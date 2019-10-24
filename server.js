@@ -9,6 +9,10 @@ const profile = require('./routes/api/profile')
 const posts = require('./routes/api/posts')
 
 const app = express()
+
+
+// Body parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
 // Database config
@@ -28,7 +32,7 @@ app.use(passport.initialize())
 require('./config/passport')(passport)
 
 app.use('/api/users', users)
-app.use('api/profile', profile)
+app.use('/api/profile', profile)
 app.use('/api/posts', posts)
 
 const port = process.env.PORT || 5000
